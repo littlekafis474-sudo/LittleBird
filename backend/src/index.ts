@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import { connectDB } from './db/index';
 
 dotenv.config();
 
@@ -25,8 +26,9 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 LittleBird backend running on http://localhost:${PORT}`);
+  await connectDB();
 });
 
 export default app;
