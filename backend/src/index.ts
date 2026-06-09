@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import { connectDB } from './db/index';
+import authRoutes from './routes/auth.routes';
 
 dotenv.config();
 
@@ -17,6 +18,9 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(morgan('dev'));
+
+// Routes
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: '🐦 LittleBird API is running!' });
