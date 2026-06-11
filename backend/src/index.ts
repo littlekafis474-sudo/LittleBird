@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import { connectDB } from './db/index';
 import authRoutes from './routes/auth.routes';
+import profileRoutes from './routes/profile.routes';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(morgan('dev'));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: '🐦 LittleBird API is running!' });
