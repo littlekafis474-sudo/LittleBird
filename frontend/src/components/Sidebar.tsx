@@ -1,73 +1,36 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import Logo from './Logo';
-
-const navItems = [
-  { href: '/home', label: 'Home', icon: '🏠' },
-  { href: '/explore', label: 'Explore', icon: '🔍' },
-  { href: '/notifications', label: 'Notifications', icon: '🔔' },
-  { href: '/nest', label: 'Nest Messenger', icon: '✉️' },
-  { href: '/profile', label: 'Profile', icon: '👤' },
-];
 
 export default function Sidebar() {
-  const pathname = usePathname();
-
   return (
     <aside style={{
-      width: '260px',
+      width: '250px',
       height: '100vh',
       position: 'fixed',
       left: 0,
       top: 0,
-      background: '#0A0A0A',
-      borderRight: '1px solid #222222',
+      backgroundColor: '#0d1117',
+      borderRight: '1px solid #2a2a2a',
       display: 'flex',
       flexDirection: 'column',
-      padding: '24px 16px',
-      gap: '8px',
-      zIndex: 100,
+      padding: '1.5rem 1rem',
+      gap: '0.5rem',
     }}>
-      <div style={{ marginBottom: '32px', paddingLeft: '12px' }}>
-        <Logo size={44} />
-      </div>
-
-      {navItems.map((item) => (
-        <Link key={item.href} href={item.href} style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '16px',
-          padding: '12px 16px',
-          borderRadius: '12px',
-          fontSize: '16px',
-          fontWeight: pathname === item.href ? '700' : '400',
-          color: pathname === item.href ? '#FFFFFF' : '#888888',
-          background: pathname === item.href ? '#CC0000' : 'transparent',
-          transition: 'all 0.2s ease',
-          textDecoration: 'none',
-        }}>
-          <span style={{ fontSize: '20px' }}>{item.icon}</span>
-          {item.label}
-        </Link>
-      ))}
-
-      <div style={{ marginTop: 'auto' }}>
-        <button style={{
-          width: '100%',
-          padding: '14px',
-          background: '#CC0000',
-          color: '#FFFFFF',
-          borderRadius: '12px',
-          fontSize: '16px',
-          fontWeight: '700',
-          border: 'none',
-          cursor: 'pointer',
-          letterSpacing: '0.5px',
-        }}>
-          + New Post
-        </button>
-      </div>
+      <h1 style={{ color: '#e8643a', fontSize: '1.5rem', marginBottom: '2rem' }}>🐦 LittleBird</h1>
+      <Link href="/home" style={navLink}>🏠 Home</Link>
+      <Link href="/explore" style={navLink}>🔍 Explore</Link>
+      <Link href="/notifications" style={navLink}>🔔 Notifications</Link>
+      <Link href="/messages" style={navLink}>✉️ Messages</Link>
+      <Link href="/profile" style={navLink}>👤 Profile</Link>
     </aside>
   );
 }
+
+const navLink: React.CSSProperties = {
+  color: '#ffffff',
+  textDecoration: 'none',
+  padding: '0.75rem 1rem',
+  borderRadius: '8px',
+  fontSize: '1rem',
+  transition: 'background 0.2s',
+};
